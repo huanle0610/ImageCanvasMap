@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+    <title> picture words </title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/wordcard/main.css?version=1"/>
+    <link rel="stylesheet" href="css/wordcard/html5sticky.css?version=1"/>
+
+    <!-- JavaScript -->
+    <!--[if IE]><![endif]-->
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <style>
+        #main {
+            margin-left: 15px;
+            width: 100%;
+        }
+
+        div#image_wrapper > div {
+            margin: 0px auto;
+        }
+
+        #left {
+            float: left;
+            width: 185px;
+        }
+
+        #left li {
+            cursor: pointer;
+        }
+
+        #left li.selected {
+            background-color: #EEEEEE;
+            text-shadow: 0px 1px 1px #4d4d4d;
+        }
+
+        #right {
+            float: right;
+            width: 540px;
+        }
+
+        #image_wrapper {
+            float: left;
+            max-width: 900px;
+        }
+
+        iframe {
+            background: #FFF;
+        }
+    </style>
+    <script type="text/javascript" src="js/jquery/jquery.min.js"></script>
+    <script language="javascript" type="text/jscript" src="js/en_base.js"></script>
+    <script>
+        var Request = {
+            QueryString: function (val, href) {
+                var uri = href || window.location.search;
+                uri = uri.replace(/#.*$/, '');
+                var re = new RegExp("" + val + "=([^&?]*)", "ig");
+                return ((uri.match(re)) ? (uri.match(re)[0].substr(val.length + 1)) : null);
+            }
+        };
+
+        function getWord(word) {
+            var obj = getWordProperty(word);
+            if (!obj) {
+                console.log('querying')
+                query(word, function () {
+                    obj = getWordProperty(word);
+                    return obj;
+                });
+            }
+
+            return obj;
+        }
+
+        function mouseIn(o, e) {
+            var name = $(o).attr('name');
+            if (name) {
+                (e.ctrlKey) && liClick(name);
+                myplaysound(englishtottsurl(name));
+            }
+        }
+        function mouseOut(o) {
+        }
+
+        function liClick(kw) {
+            updateIframe(kw);
+        }
+        function loadSrc(src) {
+            $("#output_iframe_id")[0].src = src;
+            var h = $('#image_wrapper').outerHeight();
+            h = h < 630 ? 630 : h;
+            $('#output_iframe_id').height(h);
+            console.log(h);
+        }
+        function updateIframe(key) {
+            window.kw = window.kw || '';
+            if (key !== window.kw) {
+                var src = sprintf("http://cn.bing.com/dict/search?q=%s&go=&qs=n&form=CM&pq=%s&sc=7-4&sp=-1&sk=", key, key);
+                loadSrc(src);
+                window.kw = key;
+            }
+        }
+
+        function updateTooltip(key) {
+            var w = getWord(key);
+            return w ? key + '<br /><ul>' + w.chinese + '</ul>' : key;
+        }
+    </script>
+    <script src="js/mapper/common.js"></script>
+    <script src="js/mapper/jquery.imagemapster.js"></script>
+</head>
+
+<body>
+<div id="main">
+    <div id="left">
+        <ul id='boundList'></ul>
+        <a href="#" id="clearAll">clear all</a>
+        <div style="clear:both;"></div>
+    </div>
+    <div id="image_wrapper"></div>
+    <div id="right">
+        <iframe id="output_iframe_id" src="" width="100%" scrolling="auto"></iframe>
+    </div>
+</div>
+
+<div class="clear">&nbsp;</div>
+</body>
+</html>

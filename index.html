@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>HTML5 canvas image mapper</title>
+    <link rel="stylesheet" media="all" href="css/style.css"/>
+    <script src="js/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="js/mapper/jquery-ui-1.8.23.custom.min.js"></script>
+    <script src="js/modernizr-1.6.min.js"></script>
+
+    <!--<script src="js/mapper/mapper.js"></script>-->
+    <script src="js/mapper/mapper.full.js"></script>
+    <script src="js/mapper/app.js"></script>
+    <script>
+        var IMG_SRC = '';
+        function OpenInNewTab(url) {
+            var win = window.open(url, '_blank');
+            win.focus();
+        }
+
+        $(function () {
+
+            $('#test2').click(function () {
+                $('#map').click();
+                var val = $('#result textarea').val();
+                var url = '';
+                if (val) {
+                    switch (this.id) {
+                        case 'test2':
+                            url = 'picture.html';
+                            break;
+                    }
+                    var param = escape(JSON.stringify(val));
+                    OpenInNewTab(url + '?src=' + IMG_SRC + '&param=' + param);
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="container">
+    <header id="header">
+        <h1>HTML5 canvas image mapper</h1>
+        <a id="test" href="picture.html?src=http://ww1.sinaimg.cn/mw1024/62dabf66gw1f4q7f2doq7j21b60vfb29.jpg&param=%22%3Cmap%20name%3D%27fruit%27%3E%5Cn%3Carea%20shape%3D%27circle%27%20coords%3D%27386%2C%20330%2C%2053%27%20href%3D%27%23%27%20name%20%3D%20%27apple%27%20/%3E%5Cn%3Carea%20shape%3D%27poly%27%20coords%3D%271003%2C%20231%2C%20985%2C%20235%2C%20941%2C%20272%2C%20920%2C%20284%2C%20903%2C%20289%2C%20887%2C%20291%2C%20857%2C%20290%2C%20846%2C%20280%2C%20840%2C%20254%2C%20832%2C%20245%2C%20822%2C%20157%2C%20828%2C%20103%2C%20836%2C%2087%2C%20865%2C%2068%2C%20872%2C%2058%2C%20906%2C%2057%2C%20937%2C%2045%2C%20982%2C%2062%2C%201011%2C%20108%2C%201021%2C%20150%2C%201024%2C%20190%2C%201021%2C%20208%27%20href%3D%27%23%27%20name%20%3D%20%27banana%27%20/%3E%5Cn%3Carea%20shape%3D%27circle%27%20coords%3D%27675%2C%20394%2C%2045%27%20href%3D%27%23%27%20name%20%3D%20%27tomato%27%20/%3E%5Cn%3Carea%20shape%3D%27circle%27%20coords%3D%27741%2C%20463%2C%2041%27%20href%3D%27%23%27%20name%20%3D%20%27tomato%27%20/%3E%5Cn%3Carea%20shape%3D%27poly%27%20coords%3D%27548%2C%20203%2C%20521%2C%20215%2C%20511%2C%20215%2C%20488%2C%20198%2C%20471%2C%20162%2C%20466%2C%20130%2C%20482%2C%20116%2C%20506%2C%20107%2C%20507%2C%2080%2C%20522%2C%2065%2C%20528%2C%2075%2C%20520%2C%2083%2C%20518%2C%2095%2C%20520%2C%20108%2C%20533%2C%20100%2C%20548%2C%2097%2C%20567%2C%20106%2C%20585%2C%20145%2C%20576%2C%20183%2C%20570%2C%20188%27%20href%3D%27%23%27%20name%20%3D%20%27green%20pepper%27%20/%3E%5Cn%3Carea%20shape%3D%27circle%27%20coords%3D%27440%2C%20568%2C%2050%27%20href%3D%27%23%27%20name%20%3D%20%27onion%27%20/%3E%5Cn%3Carea%20shape%3D%27poly%27%20coords%3D%27203%2C%20515%2C%20203%2C%20511%2C%20232%2C%20504%2C%20298%2C%20491%2C%20333%2C%20498%2C%20338%2C%20500%2C%20360%2C%20485%2C%20390%2C%20481%2C%20403%2C%20499%2C%20411%2C%20519%2C%20393%2C%20540%2C%20376%2C%20566%2C%20350%2C%20583%2C%20326%2C%20579%2C%20292%2C%20574%2C%20250%2C%20574%2C%20232%2C%20565%2C%20217%2C%20550%2C%20202%2C%20546%2C%20196%2C%20556%2C%20176%2C%20546%2C%20175%2C%20534%2C%20196%2C%20516%2C%20201%2C%20514%27%20href%3D%27%23%27%20name%20%3D%20%27potato%27%20/%3E%5Cn%3Carea%20shape%3D%27poly%27%20coords%3D%27615%2C%20661%2C%20583%2C%20623%2C%20551%2C%20605%2C%20521%2C%20584%2C%20513%2C%20554%2C%20603%2C%20598%2C%20656%2C%20610%2C%20632%2C%20581%2C%20571%2C%20514%2C%20625%2C%20540%2C%20682%2C%20605%2C%20688%2C%20598%2C%20701%2C%20580%2C%20701%2C%20566%2C%20671%2C%20541%2C%20656%2C%20521%2C%20652%2C%20508%2C%20668%2C%20509%2C%20698%2C%20508%2C%20730%2C%20508%2C%20762%2C%20505%2C%20785%2C%20498%2C%20853%2C%20515%2C%20872%2C%20520%2C%20880%2C%20534%2C%20921%2C%20554%2C%20951%2C%20578%2C%20968%2C%20596%2C%20986%2C%20611%2C%201016%2C%20648%2C%201021%2C%20661%2C%201018%2C%20669%2C%20627%2C%20666%27%20href%3D%27%23%27%20name%20%3D%20%27bean%27%20/%3E%5Cn%3Carea%20shape%3D%27poly%27%20coords%3D%27449%2C%20131%2C%20446%2C%20106%2C%20457%2C%2082%2C%20476%2C%2063%2C%20493%2C%2047%2C%20527%2C%2024%2C%20554%2C%2015%2C%20567%2C%2013%2C%20603%2C%2019%2C%20626%2C%2047%2C%20575%2C%2068%2C%20544%2C%2095%2C%20524%2C%20106%2C%20529%2C%2076%2C%20525%2C%2059%2C%20499%2C%2084%2C%20501%2C%20109%2C%20473%2C%20118%2C%20470%2C%20118%27%20href%3D%27%23%27%20name%20%3D%20%27eggplant%27%20/%3E%5Cn%3Carea%20shape%3D%27poly%27%20coords%3D%27456%2C%20344%2C%20461%2C%20315%2C%20470%2C%20301%2C%20484%2C%20287%2C%20482%2C%20279%2C%20486%2C%20252%2C%20502%2C%20234%2C%20514%2C%20221%2C%20541%2C%20217%2C%20562%2C%20220%2C%20578%2C%20215%2C%20590%2C%20236%2C%20612%2C%20243%2C%20629%2C%20245%2C%20641%2C%20265%2C%20652%2C%20300%2C%20660%2C%20326%2C%20644%2C%20362%2C%20614%2C%20388%2C%20605%2C%20404%2C%20580%2C%20386%2C%20539%2C%20377%2C%20527%2C%20378%2C%20496%2C%20358%2C%20474%2C%20349%27%20href%3D%27%23%27%20name%20%3D%20%27cauliflower%27%20/%3E%5Cn%3Carea%20shape%3D%27poly%27%20coords%3D%27495%2C%20392%2C%20503%2C%20452%2C%20507%2C%20480%2C%20498%2C%20499%2C%20492%2C%20506%2C%20478%2C%20515%2C%20437%2C%20510%2C%20425%2C%20484%2C%20405%2C%20490%2C%20387%2C%20475%2C%20371%2C%20463%2C%20377%2C%20426%2C%20383%2C%20412%2C%20428%2C%20401%2C%20427%2C%20375%2C%20436%2C%20357%2C%20452%2C%20347%2C%20491%2C%20359%2C%20510%2C%20381%2C%20502%2C%20392%2C%20502%2C%20390%27%20href%3D%27%23%27%20name%20%3D%20%27pear%27%20/%3E%5Cn%3Carea%20shape%3D%27poly%27%20coords%3D%27645%2C%20220%2C%20682%2C%20197%2C%20720%2C%20207%2C%20741%2C%20237%2C%20736%2C%20286%2C%20717%2C%20302%2C%20732%2C%20309%2C%20748%2C%20332%2C%20755%2C%20346%2C%20745%2C%20377%2C%20736%2C%20409%2C%20722%2C%20416%2C%20722%2C%20374%2C%20693%2C%20347%2C%20676%2C%20342%2C%20658%2C%20340%2C%20660%2C%20331%2C%20683%2C%20332%2C%20692%2C%20316%2C%20680%2C%20300%2C%20668%2C%20289%2C%20666%2C%20267%2C%20652%2C%20256%2C%20647%2C%20235%27%20href%3D%27%23%27%20name%20%3D%20%27oranges%27%20/%3E%5Cn%3C/map%3E%22" target="_blank">Demo1</a>
+        <a id="test2" href="javascript:;" target="_blank">Preview</a>
+        <a id="help" href="http://www.latoclient.it/mapper/manual/index.html" target="_blank">Help</a>
+    </header>
+    <div id="body">
+
+        <div id="debug">
+            <p id="limit_message">This is a demo version of the image mapper.<br><br>
+                Click on the <strong>Help</strong> button on the top-left for instructions on the tool usage.<br><br>
+                Click on the <strong>Demo1</strong> button to see a example.<br><br>
+                Click on the <strong>Preview</strong> button to your work.
+            </p>
+        </div>
+
+        <div id="image_wrapper">
+            <div id="canvas_info1" class="canvas_info"></div>
+            <div id="error"></div>
+            <div id="drop_wrap">
+                <div id="droparea"></div>
+            </div>
+            <div id="select_wrap">
+                <div id="canvas_info2" class="canvas_info"></div>
+                <label id="remote_label" for="remote_select">Select a remote image:</label>
+                <input id="remote_button" class="select_inputs select_buttons" type="button" value="load"/><input
+                    id="remote_select" class="select_inputs" type="text"/>
+                <br/>
+                <label id="local_label" for="local_button">Select a local image:</label>
+                <input id="local_button" class="select_inputs select_buttons" type="button" value="Select"/>
+            </div>
+        </div>
+
+
+        <div id="dashboard" class='hidden'>
+            <div id="dashboard_body">
+                <div id="stop" class="tools stop selected">
+                    <canvas class="shapes" id="empty_shape"></canvas>
+                </div>
+                <div id="rect" class="tools start">
+                    <canvas class="shapes" id="rect_shape"></canvas>
+                </div>
+                <div id="circle" class="tools start">
+                    <canvas class="shapes" id="circle_shape"></canvas>
+                </div>
+                <div id="poly" class="tools start">
+                    <canvas class="shapes" id="poly_shape"></canvas>
+                </div>
+                <div id="remove" class="remove hidden">
+                    <canvas class="control" id="rubber"></canvas>
+                </div>
+                <div id="pencil" class="pencil">
+                    <canvas class="control" id="pencil_color"></canvas>
+                </div>
+                <div id="plus" class="zoom">
+                    <canvas class="control" id="zoom_plus"></canvas>
+                </div>
+                <div id="minus" class="zoom">
+                    <canvas class="control" id="zoom_minus"></canvas>
+                </div>
+                <input id="hide" class="control_button hidden" type="button" value="hide"/>
+                <input id="load" class="control_button hidden" type="button" value="load"/>
+                <input id="map" class="control_button" type="button" value="show"/>
+            </div>
+        </div>
+        <div id="image-params" class="hidden">
+            <fieldset>
+                <legend id="image-parameters">image params</legend>
+                <div id="curr-image-size">current image size:</div>
+                <label id="curr-w-label">width:</label>
+                <input type="text" id="curr-width" class="input read-only" readonly="readonly"/>
+                <label id="curr-h-label">height:</label>
+                <input type="text" id="curr-height" class="input read-only" readonly="readonly"/>
+                <br/><br/>
+                <div id="target-image-size">target image size:</div>
+                <label id="target-w-label">width:</label>
+                <input type="text" id="target-width" class="input"/>
+                <label id="target-h-label">height:</label>
+                <input type="text" id="target-height" class="input"/>
+            </fieldset>
+
+            <fieldset id="map-params">
+                <legend id="map-parameters">map params</legend>
+                <label id="map-name-label">map name</label>
+                <input type="text" id="mapname" class="input default-params"/>
+                <label id="default-url-label">default url</label>
+                <input type="text" id="defaulturl" class="input default-params"/>
+                <label id="default-target-label">default target</label>
+                <select id="defaulttarget"/>
+                <option value="none">none</option>
+                <option value="_self">_self</option>
+                <option value="_top">_top</option>
+                <option value="_blank">_blank</option>
+                <option value="_parent">_parent</option>
+                </select>
+            </fieldset>
+
+            <fieldset id="area-params" class="hidden">
+                <legend id="area-parameters">area params</legend>
+                <label id="area-name-label">shape</label>
+                <input type="text" id="shape" class="area-params read-only" readonly="readonly"/>
+                <label id="area-url-label">url</label>
+                <input type="text" id="areaurl" class="area-params"/>
+                <br/>
+                <label id="alt-text-label">alt</label>
+                <input type="text" id="alttext" class="area-params"/>
+                <br/>
+                <label id="area-id-label">name</label>
+                <input type="text" id="idname" class="area-params"/>
+                <label id="area-class-label">class</label>
+                <input type="text" id="classname" class="area-params"/>
+                <label id="area-target-label">target</label>
+                <select id="areatarget"/>
+                <option value="none">none</option>
+                <option value="_self">_self</option>
+                <option value="_top">_top</option>
+                <option value="_blank">_blank</option>
+                <option value="_parent">_parent</option>
+                </select>
+            </fieldset>
+        </div>
+        <div id="result" class='hidden'><textarea class="hidden"></textarea></div>
+
+    </div>
+    <div id="footer">
+        <span style="color:#85178f">&copy; 2012 HTML5 canvas Image Mapper</span>
+    </div>
+</div>
+</body>
+</html>
